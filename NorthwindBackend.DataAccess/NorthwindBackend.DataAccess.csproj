@@ -5,11 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NorthwindBackend.Core\NorthwindBackend.Core.csproj" />
+    <ProjectReference Include="..\NorthwindBackend.Entities\NorthwindBackend.Entities.csproj" />
   </ItemGroup>
 
 </Project>

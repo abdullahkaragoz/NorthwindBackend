@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NorthwindBackend.DataAccess\NorthwindBackend.DataAccess.csproj" />
+    <ProjectReference Include="..\NorthwindBackend.Entities\NorthwindBackend.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

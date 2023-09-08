@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NorthwindBackend.DataAccess\NorthwindBackend.DataAccess.csproj" />
     <ProjectReference Include="..\NorthwindBackend.Entities\NorthwindBackend.Entities.csproj" />
   </ItemGroup>

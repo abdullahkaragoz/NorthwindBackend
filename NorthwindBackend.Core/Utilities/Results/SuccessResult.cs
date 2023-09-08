@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NorthwindBackend.Core.Utilities.Results
+﻿namespace NorthwindBackend.Core.Utilities.Results
 {
     public class SuccessResult : Result
     {

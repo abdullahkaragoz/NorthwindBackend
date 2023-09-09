@@ -3,10 +3,9 @@ using NorthwindBackend.DataAccess.Abstract;
 using NorthwindBackend.DataAccess.Concrete.EntityFramework.Contexts;
 using NorthwindBackend.Entities.Concrete;
 
-namespace NorthwindBackend.DataAccess.Concrete.EntityFramework
+namespace NorthwindBackend.DataAccess.Concrete
 {
-    public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
+    public class EfCategoryDal : EfEntityRepositoryBase<Category, NorthwindContext>, ICategoryDal
     {
-
     }
 }

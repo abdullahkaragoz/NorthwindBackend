@@ -2,7 +2,7 @@
 using NorthwindBackend.Business.Abstract;
 using NorthwindBackend.Business.Concrete;
 using NorthwindBackend.DataAccess.Abstract;
-using NorthwindBackend.DataAccess.Concrete.EntityFramework;
+using NorthwindBackend.DataAccess.Concrete;
 
 namespace NorthwindBackend.Business.DependencyResolvers.Autofac
 {
@@ -14,7 +14,10 @@ namespace NorthwindBackend.Business.DependencyResolvers.Autofac
             builder.RegisterType<EfProductDal>().As<IProductDal>(); 
             
             builder.RegisterType<CategoryManager>().As<ICategoryService>();
-            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>(); 
+            
+            builder.RegisterType<UserManager>().As<IUserDal>();
+            builder.RegisterType<EfUserDal>().As<IUserDal>();
         }
     }
 }

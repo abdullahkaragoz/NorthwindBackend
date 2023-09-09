@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NorthwindBackend.Core.Security.Jwt
+namespace NorthwindBackend.Core.Utilities.Security.Jwt
 {
     public class AccessToken
     {

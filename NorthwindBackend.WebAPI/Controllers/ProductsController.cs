@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NorthwindBackend.Business.Abstract;
 using NorthwindBackend.Entities.Concrete;
 
@@ -17,6 +18,7 @@ namespace NorthwindBackend.WebAPI.Controllers
         }
 
         [HttpGet("getAll")]
+        [Authorize()]
         public IActionResult GetList()
         {
             var result = _productService.GetList();

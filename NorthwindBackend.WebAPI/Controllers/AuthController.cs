@@ -37,8 +37,8 @@ namespace NorthwindBackend.WebAPI.Controllers
             var userExist = _authService.UserExists(userForRegisterDto.Email);
             if (!userExist.IsSuccess)
                 return BadRequest(userExist.Message);
-
-            var result = _authService.Register(userForRegisterDto);
+            var registerResult = _authService.Register(userForRegisterDto);
+            var result = _authService.CreateAccessToken(registerResult.Data);
             if (result.IsSuccess)
                 return Ok(result.Data);
 

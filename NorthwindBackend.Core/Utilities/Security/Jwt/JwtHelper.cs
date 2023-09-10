@@ -15,7 +15,7 @@ namespace NorthwindBackend.Core.Utilities.Security.Jwt
     public class JwtHelper : ITokenHelper
     {
         public IConfiguration Configuration { get; }
-        TokenOptions _tokenOptions;
+        private TokenOptions _tokenOptions;
         private DateTime _accessTokenExpiration;
 
         public JwtHelper(IConfiguration configuration)

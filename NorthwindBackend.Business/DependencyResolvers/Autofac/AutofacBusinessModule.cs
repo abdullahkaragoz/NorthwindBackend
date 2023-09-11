@@ -3,7 +3,7 @@ using NorthwindBackend.Business.Abstract;
 using NorthwindBackend.Business.Concrete;
 using NorthwindBackend.Core.Utilities.Security.Jwt;
 using NorthwindBackend.DataAccess.Abstract;
-using NorthwindBackend.DataAccess.Concrete;
+using NorthwindBackend.DataAccess.Concrete.EntityFramework;
 
 namespace NorthwindBackend.Business.DependencyResolvers.Autofac
 {

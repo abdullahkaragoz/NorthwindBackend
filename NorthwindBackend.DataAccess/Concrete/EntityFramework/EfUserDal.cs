@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace NorthwindBackend.DataAccess.Concrete
+namespace NorthwindBackend.DataAccess.Concrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, NorthwindContext>, IUserDal
     {

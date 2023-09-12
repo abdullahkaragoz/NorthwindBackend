@@ -1,6 +1,7 @@
 ﻿using NorthwindBackend.Business.Abstract;
 using NorthwindBackend.Business.Constants;
 using NorthwindBackend.Business.ValidationRules.FluentValidation;
+using NorthwindBackend.Core.Aspects.Autofac.Transaction;
 using NorthwindBackend.Core.Aspects.Autofac.Validation;
 using NorthwindBackend.Core.Utilities.Results;
 using NorthwindBackend.DataAccess.Abstract;
@@ -55,7 +56,12 @@ namespace NorthwindBackend.Business.Concrete
             return new SuccessDataResult<List<Product>>( _productDal.GetList(x => x.CategoryId == categoryId).ToList());
         }
 
-      
-
+        [TransactionScopeAspect]
+        public IResult TransactionalOperation(Product product)
+        {
+            _productDal.Update(product);
+          //  _productDal.Add(product);
+            return new SuccessResult(Messages.ProductUpdated);
+        }
     }
 }

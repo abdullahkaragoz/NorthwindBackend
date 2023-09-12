@@ -80,5 +80,16 @@ namespace NorthwindBackend.WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+
+        [HttpPost("transaction")]
+        public IActionResult TransactionTest(Product product)
+        {
+            var result = _productService.TransactionalOperation(product);
+
+            if (result.IsSuccess)
+                return Ok(result.Message);
+            return BadRequest(result.Message);
+        }
+
     }
 }

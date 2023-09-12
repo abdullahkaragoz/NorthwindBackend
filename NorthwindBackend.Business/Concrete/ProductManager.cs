@@ -1,5 +1,7 @@
 ﻿using NorthwindBackend.Business.Abstract;
 using NorthwindBackend.Business.Constants;
+using NorthwindBackend.Business.ValidationRules.FluentValidation;
+using NorthwindBackend.Core.Aspects.Autofac.Validation;
 using NorthwindBackend.Core.Utilities.Results;
 using NorthwindBackend.DataAccess.Abstract;
 using NorthwindBackend.DataAccess.Concrete.EntityFramework;
@@ -20,6 +22,7 @@ namespace NorthwindBackend.Business.Concrete
             _productDal = productDal;
         }
 
+        [ValidationAspect(typeof(ProductValidator), Priority = 1)]
         public IResult Add(Product product)
         {
             _productDal.Add(product);

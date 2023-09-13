@@ -6,3 +6,11 @@ Used Technologies:
 - API configuration,
 - Repository Pattern
 - JWT
+- Validation Rules
+- Dynamic Proxy
+- AOP - Validation
+- AOP - Caching
+- AOP & Cross Cutting
+- Fluent Validation
+- Interceptor İmplementation
+- Service Collection Extension

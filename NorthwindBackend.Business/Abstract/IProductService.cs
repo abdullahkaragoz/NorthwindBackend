@@ -12,6 +12,7 @@ namespace NorthwindBackend.Business.Abstract
         IDataResult<Product> GetById(int productId);
         IDataResult<List<Product>> GetList();
         IDataResult<List<Product>> GetListByCategory(int categoryId);
-    
+
+        IResult TransactionalOperation(Product product);
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NorthwindBackend.Core.CrossCuttingConcerns.Caching;
+using NorthwindBackend.Core.CrossCuttingConcerns.Caching.Microsoft;
 using NorthwindBackend.Core.Utilities.IoC;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NorthwindBackend.Core.DependencyResolvers
 {
@@ -11,6 +10,7 @@ namespace NorthwindBackend.Core.DependencyResolvers
         public void Load(IServiceCollection services)
         {
             services.AddMemoryCache();
+            services.AddSingleton<ICacheManager, MemoryCacheManager>(); 
         }
     }
 }

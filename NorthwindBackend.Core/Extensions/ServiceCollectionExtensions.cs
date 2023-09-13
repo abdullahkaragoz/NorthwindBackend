@@ -15,6 +15,6 @@ namespace NorthwindBackend.Core.Extensions
                 module.Load(services);
             }
             return ServiceTool.Create(services);
-        };
+        }
     }
 }

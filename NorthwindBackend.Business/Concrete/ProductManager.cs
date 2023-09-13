@@ -1,6 +1,7 @@
 ﻿using NorthwindBackend.Business.Abstract;
 using NorthwindBackend.Business.Constants;
 using NorthwindBackend.Business.ValidationRules.FluentValidation;
+using NorthwindBackend.Core.Aspects.Autofac.Caching;
 using NorthwindBackend.Core.Aspects.Autofac.Transaction;
 using NorthwindBackend.Core.Aspects.Autofac.Validation;
 using NorthwindBackend.Core.Utilities.Results;
@@ -24,6 +25,7 @@ namespace NorthwindBackend.Business.Concrete
         }
 
         [ValidationAspect(typeof(ProductValidator), Priority = 1)]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             _productDal.Add(product);
@@ -51,6 +53,7 @@ namespace NorthwindBackend.Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetList().ToList());
         }
 
+        [CacheAspect(1)]
         public IDataResult<List<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<List<Product>>( _productDal.GetList(x => x.CategoryId == categoryId).ToList());

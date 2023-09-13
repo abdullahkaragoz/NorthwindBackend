@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "fc14ff20-608f-4f2e-885c-c8e1ef1c1a2a",
+		"name": "NorthwindProjectCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19852365"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "ProductGetall",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:44352/api/products/getall"
+					},
+					"response": []
+				},
+				{
+					"name": "Productgetlistbycategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44352/api/products/getlistbycategory?categoryId=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44352",
+							"path": [
+								"api",
+								"products",
+								"getlistbycategory"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product/Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\":1,\r\n    \"productName\":\"Laptop\",\r\n    \"unitsInStock\":10,\r\n    \"quantityPerUnit\":\"1 Piece\",\r\n    \"unitPrice\": 1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:44352/api/products/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Product/Add/Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\":1,\r\n    \"productName\":\"Laptop\",\r\n    \"unitsInStock\":10,\r\n    \"quantityPerUnit\":\"1 Piece\",\r\n    \"unitPrice\": 1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:44352/api/products/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Product/Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": 78,\r\n    \"categoryId\": 1,\r\n    \"productName\": \"Laptop\",\r\n    \"unitsInStock\": 100,\r\n    \"quantityPerUnit\": \"1 Piece\",\r\n    \"unitPrice\": 999\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:44352/api/products/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Product/Delete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:44352/api/products/getall"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "CategoryGetall",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:44352/api/catergories/getall"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"abdullahkaragoz30@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"firstName\":\"Abdullah\",\r\n    \"lastName\":\"Karagöz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:44352/api/auth/register/"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\":1,\r\n    \"productName\":\"Laptop\",\r\n    \"unitsInStock\":10,\r\n    \"quantityPerUnit\":\"1 Piece\",\r\n    \"unitPrice\": 1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:44352/api/products/add"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

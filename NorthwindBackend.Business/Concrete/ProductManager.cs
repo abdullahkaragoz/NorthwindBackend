@@ -1,17 +1,17 @@
-﻿using NorthwindBackend.Business.Abstract;
+﻿using Microsoft.AspNetCore.Http;
+using NorthwindBackend.Business.Abstract;
+using NorthwindBackend.Business.BusinessAspect;
 using NorthwindBackend.Business.Constants;
 using NorthwindBackend.Business.ValidationRules.FluentValidation;
 using NorthwindBackend.Core.Aspects.Autofac.Caching;
 using NorthwindBackend.Core.Aspects.Autofac.Transaction;
 using NorthwindBackend.Core.Aspects.Autofac.Validation;
+using NorthwindBackend.Core.Extensions;
 using NorthwindBackend.Core.Utilities.Results;
 using NorthwindBackend.DataAccess.Abstract;
-using NorthwindBackend.DataAccess.Concrete.EntityFramework;
 using NorthwindBackend.Entities.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace NorthwindBackend.Business.Concrete
 {
@@ -48,22 +48,24 @@ namespace NorthwindBackend.Business.Concrete
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
+
         public IDataResult<List<Product>> GetList()
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetList().ToList());
         }
 
-        [CacheAspect(1)]
+        [SecuredOperation("Product.List,Admin")]
+        [CacheAspect(10)]
         public IDataResult<List<Product>> GetListByCategory(int categoryId)
         {
-            return new SuccessDataResult<List<Product>>( _productDal.GetList(x => x.CategoryId == categoryId).ToList());
+            return new SuccessDataResult<List<Product>>(_productDal.GetList(x => x.CategoryId == categoryId).ToList());
         }
 
         [TransactionScopeAspect]
         public IResult TransactionalOperation(Product product)
         {
             _productDal.Update(product);
-          //  _productDal.Add(product);
+            //  _productDal.Add(product);
             return new SuccessResult(Messages.ProductUpdated);
         }
     }

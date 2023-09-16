@@ -4,6 +4,7 @@ using NorthwindBackend.Business.BusinessAspect;
 using NorthwindBackend.Business.Constants;
 using NorthwindBackend.Business.ValidationRules.FluentValidation;
 using NorthwindBackend.Core.Aspects.Autofac.Caching;
+using NorthwindBackend.Core.Aspects.Autofac.Performance;
 using NorthwindBackend.Core.Aspects.Autofac.Transaction;
 using NorthwindBackend.Core.Aspects.Autofac.Validation;
 using NorthwindBackend.Core.Extensions;
@@ -12,6 +13,7 @@ using NorthwindBackend.DataAccess.Abstract;
 using NorthwindBackend.Entities.Concrete;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace NorthwindBackend.Business.Concrete
 {
@@ -48,9 +50,10 @@ namespace NorthwindBackend.Business.Concrete
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
-
+        [PerformanceAspect(5)]
         public IDataResult<List<Product>> GetList()
         {
+            Thread.Sleep(5000);
             return new SuccessDataResult<List<Product>>(_productDal.GetList().ToList());
         }
 

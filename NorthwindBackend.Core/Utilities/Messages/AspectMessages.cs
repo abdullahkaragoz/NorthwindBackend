@@ -6,6 +6,7 @@ namespace NorthwindBackend.Core.Utilities.Messages
 {
     public static class AspectMessages
     {
-        public static string WrongType = "Wrond validation type";
+        public static string WrongType = "Wrong validation type!";
+        public static string WrongLoggerType = "Wrong logger type!";
     }
 }

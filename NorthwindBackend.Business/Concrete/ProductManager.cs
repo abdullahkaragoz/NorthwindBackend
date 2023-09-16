@@ -4,9 +4,11 @@ using NorthwindBackend.Business.BusinessAspect;
 using NorthwindBackend.Business.Constants;
 using NorthwindBackend.Business.ValidationRules.FluentValidation;
 using NorthwindBackend.Core.Aspects.Autofac.Caching;
+using NorthwindBackend.Core.Aspects.Autofac.Logging;
 using NorthwindBackend.Core.Aspects.Autofac.Performance;
 using NorthwindBackend.Core.Aspects.Autofac.Transaction;
 using NorthwindBackend.Core.Aspects.Autofac.Validation;
+using NorthwindBackend.Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using NorthwindBackend.Core.Extensions;
 using NorthwindBackend.Core.Utilities.Results;
 using NorthwindBackend.DataAccess.Abstract;
@@ -57,8 +59,9 @@ namespace NorthwindBackend.Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetList().ToList());
         }
 
-        [SecuredOperation("Product.List,Admin")]
+        //[SecuredOperation("Product.List,Admin")]
         [CacheAspect(10)]
+        [LogAspect(typeof(DatabaseLogger))]
         public IDataResult<List<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetList(x => x.CategoryId == categoryId).ToList());

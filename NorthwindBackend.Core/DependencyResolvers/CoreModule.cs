@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using NorthwindBackend.Core.CrossCuttingConcerns.Caching;
 using NorthwindBackend.Core.CrossCuttingConcerns.Caching.Microsoft;
 using NorthwindBackend.Core.Utilities.IoC;
+using System.Diagnostics;
 
 namespace NorthwindBackend.Core.DependencyResolvers
 {
@@ -10,7 +12,9 @@ namespace NorthwindBackend.Core.DependencyResolvers
         public void Load(IServiceCollection services)
         {
             services.AddMemoryCache();
-            services.AddSingleton<ICacheManager, MemoryCacheManager>(); 
+            services.AddSingleton<ICacheManager, MemoryCacheManager>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<Stopwatch>();
         }
     }
 }

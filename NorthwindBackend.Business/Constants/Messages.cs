@@ -24,5 +24,6 @@ namespace NorthwindBackend.Business.Constants
         public static string UserRegistered = "Kullanıcı başarıyla kaydedildi.";
 
         public static string AccessTokenCreated = "AccesToken başarıyla oluşturuldu";
+        public static string AuthorizationDenied = "Erişim Yetkiniz Yok!";
     }
 }

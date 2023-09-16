@@ -5,6 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="log4net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="log4net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="log4net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
   </ItemGroup>

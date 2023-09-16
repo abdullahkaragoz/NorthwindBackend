@@ -11,6 +11,8 @@ Used Technologies:
 - AOP - Validation
 - AOP - Caching
 - AOP & Cross Cutting
+- AOP - Authorization
+- AOP - Authorization
 - Fluent Validation
 - Interceptor İmplementation
 - Service Collection Extension

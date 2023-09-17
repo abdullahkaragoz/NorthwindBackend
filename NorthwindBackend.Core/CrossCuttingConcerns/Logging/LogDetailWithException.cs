@@ -4,10 +4,8 @@ using System.Text;
 
 namespace NorthwindBackend.Core.CrossCuttingConcerns.Logging
 {
-    public class LogDetail
+    public class LogDetailWithException : LogDetail
     {
-        public string MethodName { get; set; }
-        public List<LogParameter> LogParameters { get; set; }
-
+        public string ExceptionLogMessage { get; set; }
     }
 }

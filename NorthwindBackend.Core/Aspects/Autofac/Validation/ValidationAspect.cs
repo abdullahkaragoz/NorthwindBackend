@@ -15,7 +15,7 @@ namespace NorthwindBackend.Core.Aspects.Autofac.Validation
         {
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
-                throw new Exception(AspectMessages.WrongType);
+                throw new System.Exception(AspectMessages.WrongType);
             }
             _validatorType = validatorType;
         }

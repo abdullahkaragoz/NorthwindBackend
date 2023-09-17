@@ -10,6 +10,7 @@ using NorthwindBackend.Core.Extensions;
 using NorthwindBackend.Core.Utilities.IoC;
 using NorthwindBackend.Core.Utilities.Security.Encryption;
 using NorthwindBackend.Core.Utilities.Security.Jwt;
+using NorthwindBackend.Core.Extensions;
 
 namespace NorthwindBackend.WebAPI
 {
@@ -61,6 +62,8 @@ namespace NorthwindBackend.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader());
 

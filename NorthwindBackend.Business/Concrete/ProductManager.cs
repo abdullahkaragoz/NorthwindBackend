@@ -52,6 +52,8 @@ namespace NorthwindBackend.Business.Concrete
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
+
+
         [PerformanceAspect(5)]
         public IDataResult<List<Product>> GetList()
         {

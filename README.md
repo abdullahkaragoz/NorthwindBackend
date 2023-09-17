@@ -13,6 +13,8 @@ Used Technologies:
 - AOP & Cross Cutting
 - AOP - Authorization
 - AOP - Authorization
+- AOP - ExceptionLogAspect
 - Fluent Validation
 - Interceptor İmplementation
 - Service Collection Extension
+- Middleware

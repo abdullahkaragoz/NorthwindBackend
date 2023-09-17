@@ -25,5 +25,7 @@ namespace NorthwindBackend.Business.Constants
 
         public static string AccessTokenCreated = "AccesToken başarıyla oluşturuldu";
         public static string AuthorizationDenied = "Erişim Yetkiniz Yok!";
+
+        public static string ProductNameAlreadyExists = "Aynı üründen zaten var!";
     }
 }

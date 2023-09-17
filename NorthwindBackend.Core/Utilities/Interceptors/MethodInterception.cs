@@ -7,9 +7,8 @@ namespace NorthwindBackend.Core.Utilities.Interceptors
     {
         public virtual void OnBefore(IInvocation invocation) { }
         public virtual void OnAfter(IInvocation invocation) { }
-        public virtual void OnException(IInvocation invocation) { }
+        public virtual void OnException(IInvocation invocation, System.Exception e) { }
         public virtual void OnSuccess(IInvocation invocation) { }
-
 
 
         public override void Intercept(IInvocation invocation)
@@ -20,10 +19,10 @@ namespace NorthwindBackend.Core.Utilities.Interceptors
             {
                 invocation.Proceed();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 isSuccess = false;
-                OnException(invocation);
+                OnException(invocation,e);
                 throw;
             }
             finally

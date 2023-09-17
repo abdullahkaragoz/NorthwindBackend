@@ -1,8 +1,6 @@
 ﻿using Castle.DynamicProxy;
 using NorthwindBackend.Core.Utilities.Interceptors;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Transactions;
 
 namespace NorthwindBackend.Core.Aspects.Autofac.Transaction
@@ -18,7 +16,7 @@ namespace NorthwindBackend.Core.Aspects.Autofac.Transaction
                     invocation.Proceed();
                     transactionScope.Complete();
                 }
-                catch (Exception e)
+                catch (System.Exception e)
                 {
                     transactionScope.Dispose();
                     throw;

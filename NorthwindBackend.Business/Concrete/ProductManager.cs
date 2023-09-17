@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using NorthwindBackend.Business.Abstract;
-using NorthwindBackend.Business.BusinessAspect;
+﻿using NorthwindBackend.Business.Abstract;
 using NorthwindBackend.Business.Constants;
 using NorthwindBackend.Business.ValidationRules.FluentValidation;
 using NorthwindBackend.Core.Aspects.Autofac.Caching;
@@ -9,7 +7,7 @@ using NorthwindBackend.Core.Aspects.Autofac.Performance;
 using NorthwindBackend.Core.Aspects.Autofac.Transaction;
 using NorthwindBackend.Core.Aspects.Autofac.Validation;
 using NorthwindBackend.Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
-using NorthwindBackend.Core.Extensions;
+using NorthwindBackend.Core.Utilities.Business;
 using NorthwindBackend.Core.Utilities.Results;
 using NorthwindBackend.DataAccess.Abstract;
 using NorthwindBackend.Entities.Concrete;
@@ -21,19 +19,49 @@ namespace NorthwindBackend.Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        private readonly IProductDal _productDal;
+        private IProductDal _productDal;
+        private ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, ICategoryService categoryService)
         {
             _productDal = productDal;
+            _categoryService = categoryService;
         }
 
         [ValidationAspect(typeof(ProductValidator), Priority = 1)]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
+            IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName), CheckIfCategoryIsEnabled());
+
+            if (result != null)
+            {
+                return result;
+            }
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
+        }
+
+        private IResult CheckIfProductNameExists(string productName)
+        {
+
+            var result = _productDal.GetList(p => p.ProductName == productName).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+
+            return new SuccessResult();
+        }
+        private IResult CheckIfCategoryIsEnabled()
+        {
+            var result = _categoryService.GetList();
+            if (result.Data.Count < 10)
+            {
+                return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+
+            return new SuccessResult();
         }
 
         public IResult Delete(Product product)
@@ -52,6 +80,8 @@ namespace NorthwindBackend.Business.Concrete
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
+
+
         [PerformanceAspect(5)]
         public IDataResult<List<Product>> GetList()
         {
